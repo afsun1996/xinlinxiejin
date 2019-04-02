@@ -1,0 +1,56 @@
+a {
+	text-decoration: none;
+	color: #333
+}
+
+.lists {
+	height: 260px;
+	background: #7f8c8d;
+}
+
+.search {
+	align: right;
+	height: 40px;
+	margin: 5px;
+}
+
+#box {
+	width: 380px;
+	font-family: 'Microsoft YaHei';
+	font-size: 14px;
+}
+
+#content {
+	width: 260px;
+	border: 1px solid #e2e2e2;
+	height: 30px;
+	background-image:
+		url(E:\Source\bysj\src\main\webapp\jsp\frontEnd\img\search.jpg);
+	background-repeat: no-repeat;
+	background-size: 25px;
+	background-position: 5px center;
+	padding: 0 0 0 40px;
+}
+
+#search {
+	font-family: '微软雅黑', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 13px !important;
+	height:34px;
+	width:60px;
+	line-height: 30px !important;
+	padding: 3px 18px;
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: normal;
+	border-radius: 2px;
+	margin: 0 8px 0 3px;
+	border-radius: 2px;
+	border: 1px solid #FF8C00;
+	color: #ffffff;
+	background-color: #FF8C00;
+}
+.foot,.foot a{
+	font-family:SimHei;
+	color:#fff;
+	text-decoration:none;
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bysj.dao.MmaterialDao">
+    <select id="selectAllMmaterials" resultType="com.bysj.dto.Mmaterial" >
+        select * from Mmaterial
+    </select>
+    
+    <select id="selectMmaterialByName" resultType="com.bysj.dto.Mmaterial" parameterType="String">
+        select * from Mmaterial where mname = #{MaterialName}   
+    </select>
+    
+    <select id="selectMmaterialVague" resultType="com.bysj.dto.Mmaterial" parameterType="String">
+    <bind name="pattern1" value="'%' +  _parameter + '%'" />
+        select * from Mmaterial where mname like #{pattern1}   
+    </select>
+    <select id="selectPrescriptionByMmaterial" resultType="com.bysj.dto.Prescription" parameterType="String">
+    <bind name="pattern1" value="'%' +  _parameter + '%'" />
+        select * from prescription where constituent like #{pattern1}   
+    </select>
+    <insert id="insertMmaterial" parameterType="com.bysj.dto.Mmaterial">
+    	 insert into Mmaterial(mname, effect, attribute, info) 
+    	 		values(#{mname}, #{effect}, #{attribute}, #{info})
+    </insert>
+    
+    <delete id="removeMmaterial" parameterType="com.bysj.dto.Mmaterial">   
+        DELETE FROM Mmaterial WHERE mname = #{mname}  
+	</delete> 
+	
+	<update id="updateMmaterial" parameterType="com.bysj.dto.Mmaterial">  
+	        UPDATE Mmaterial  
+	            SET 
+	                Mmaterial.effect = #{effect},  
+	                Mmaterial.attribute = #{attribute},  
+	                Mmaterial.info = #{info}
+	         WHERE Mmaterial.mname = #{mname};     
+	</update>  
+</mapper>
+

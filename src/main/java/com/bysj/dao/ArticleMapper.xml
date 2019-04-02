@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bysj.dao.ArticleDao">
+    <select id="selectArticleById" resultType="com.bysj.dto.Article" parameterType="Integer">
+        select * from Article where uid = #{uid}
+    </select>
+    <select id="selectAllArticles" resultType="com.bysj.dto.Article" >
+        select * from Article
+    </select>
+     <select id="selectArticleByName" resultType="com.bysj.dto.Article" parameterType="com.bysj.dto.Article">
+        select * from Article where titlename = #{titlename};
+    </select>
+    <select id="selectArticleByType" resultType="com.bysj.dto.Article" parameterType="String">
+        select * from Article where type = #{type};
+    </select>
+    <insert id="insertArticle" parameterType="com.bysj.dto.Article">
+    	 insert into Article(titlename, type,content,doctorname) 
+    	 		values(#{titlename}, #{type}, #{content}, #{doctorname})
+    </insert>
+    <delete id="removeArticle" parameterType="com.bysj.dto.Article">   
+        DELETE FROM Article WHERE uid = #{uid}  
+	</delete> 
+	<update id="updateArticle" parameterType="com.bysj.dto.Article">  
+	        UPDATE Article  
+	            SET Article.titlename = #{titlename},   
+	                Article.type = #{type},
+	                Article.content = #{content},
+	                Article.doctorname=#{doctorname}
+	         WHERE Article.uid = #{uid}
+	</update>  
+
+
+  
+</mapper>
+

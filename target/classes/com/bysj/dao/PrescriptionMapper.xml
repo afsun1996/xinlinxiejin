@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bysj.dao.PrescriptionDao">
+    <select id="selectAllPrescriptions" resultType="com.bysj.dto.Prescription" >
+        select * from Prescription
+    </select>
+    <select id="selectPrescriptionByName" resultType="com.bysj.dto.Prescription" parameterType="com.bysj.dto.Prescription">
+        select * from Prescription where name=#{name} 
+    </select>
+    <select id="selectPrescriptionVague" resultType="com.bysj.dto.Prescription" parameterType="String">
+    <bind name="pattern1" value="'%' +  _parameter + '%'" />
+        select * from Prescription where name like #{pattern1} 
+        union 
+        select * from Prescription where effect like #{pattern1} 
+        union 
+        select * from Prescription where indications like #{pattern1} 
+    </select>
+    <insert id="insertPrescription" parameterType="com.bysj.dto.Prescription">
+    	 insert into Prescription(name, constituent, effect, usages, indications) 
+    	 		values(#{name}, #{constituent}, #{effect}, #{usages}, #{indications})
+    </insert>
+    <delete id="removePrescription" parameterType="String">   
+        DELETE FROM Prescription WHERE name = #{name}  
+	</delete> 
+	<update id="updatePrescription" parameterType="com.bysj.dto.Prescription">  
+	        UPDATE Prescription  
+	            SET   
+	                Prescription.constituent = #{constituent},  
+	                Prescription.effect = #{effect},  
+	                Prescription.usages = #{usages},
+	                Prescription.indications = #{indications}
+	         WHERE Prescription.name = #{name};     
+	</update>  
+
+
+  
+</mapper>
+

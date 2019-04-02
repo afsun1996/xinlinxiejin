@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bysj.dao.DoctorDao">
+    <select id="selectDoctorById" resultType="com.bysj.dto.Doctor" parameterType="Integer">
+        select * from doctor where id = #{id}
+    </select>
+    <select id="selectAllDoctors" resultType="com.bysj.dto.Doctor" >
+        select * from doctor
+    </select>
+    <select id="selectDoctorByPrecise" resultType="com.bysj.dto.Doctor" parameterType="com.bysj.dto.Doctor">
+        select * from doctor where 
+        dname=#{dname} and age=#{age} and gender = #{gender}
+    </select>
+    <select id="selectDoctorByName" resultType="com.bysj.dto.Doctor" parameterType="String">
+    <bind name="pattern1" value="'%' +  _parameter + '%'" />
+        select * from doctor where dname like #{pattern1}
+    </select>
+    <select id="selectArticleByDoctor" resultType="com.bysj.dto.Article" parameterType="String">
+    <bind name="pattern1" value="'%' +  _parameter + '%'" />
+        select * from article where doctorname like #{pattern1}
+    </select>
+    <insert id="insertDoctor" parameterType="com.bysj.dto.Doctor">
+    	 insert into doctor(dname, gender, age, birthday, deathday, info) 
+    	 		values(#{dname}, #{gender}, 
+    	 		#{age}, #{birthday}, #{deathday} ,#{info})
+    </insert>
+    <delete id="removeDoctor" parameterType="com.bysj.dto.Doctor">   
+        DELETE FROM doctor WHERE id = #{id}  
+	</delete> 
+	<update id="updateDoctor" parameterType="com.bysj.dto.Doctor">  
+	        UPDATE doctor  
+	            SET doctor.dname = #{dname},   
+	                doctor.age = #{age},  
+	                doctor.gender = #{gender},  
+	                doctor.birthday = #{birthday},
+	                doctor.deathday = #{deathday}, 
+	                doctor.info = #{info}  
+	         WHERE doctor.id = #{id};     
+	</update>  
+
+
+  
+</mapper>
+
